@@ -1,12 +1,14 @@
 // FuerzaEnCasa PWA Service Worker
-const CACHE_NAME = 'fuerzaencasa-v1';
+const CACHE_NAME = 'fuerzaencasa-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png',
+  '/icon-maskable-512.png',
   '/icon.svg',
-  '/pwa-icon.jpg',
-  '/icon-maskable.svg'
+  '/pwa-icon.jpg'
 ];
 
 // Install event - cache core static assets
@@ -39,7 +41,7 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - Stale-while-revalidate strategy for network requests
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests or chrome-extension URLs
+  // Skip non-GET requests or non-http(s) requests
   if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) {
     return;
   }
@@ -53,7 +55,18 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets & navigation - Cache first with network fallback & revalidate
+  // Navigation requests - Network first with fallback to index.html cache
+  if (event.request.mode === 'navigate') {
+    event.respondWith(
+      fetch(event.request)
+        .catch(() => {
+          return caches.match('/index.html') || caches.match('/');
+        })
+    );
+    return;
+  }
+
+  // Static assets - Cache first with network fallback & background update
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request)

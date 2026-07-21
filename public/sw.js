@@ -1,14 +1,16 @@
 // FuerzaEnCasa PWA Service Worker
-const CACHE_NAME = 'fuerzaencasa-v2';
+const CACHE_NAME = 'fuerzaencasa-v3';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/icon-maskable-512.png',
-  '/icon.svg',
-  '/pwa-icon.jpg'
+  './',
+  './index.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-512.png',
+  './icon.svg',
+  './pwa-icon.jpg',
+  './screenshot-1.png',
+  './screenshot-2.png'
 ];
 
 // Install event - cache core static assets
@@ -41,7 +43,6 @@ self.addEventListener('activate', (event) => {
 
 // Fetch event - Stale-while-revalidate strategy for network requests
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests or non-http(s) requests
   if (event.request.method !== 'GET' || !event.request.url.startsWith('http')) {
     return;
   }
@@ -49,8 +50,7 @@ self.addEventListener('fetch', (event) => {
   // Handle API calls - network first with cache fallback
   if (event.request.url.includes('/api/')) {
     event.respondWith(
-      fetch(event.request)
-        .catch(() => caches.match(event.request))
+      fetch(event.request).catch(() => caches.match(event.request))
     );
     return;
   }
@@ -58,20 +58,19 @@ self.addEventListener('fetch', (event) => {
   // Navigation requests - Network first with fallback to index.html cache
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request)
-        .catch(() => {
-          return caches.match('/index.html') || caches.match('/');
-        })
+      fetch(event.request).catch(() => {
+        return caches.match('./index.html') || caches.match('./');
+      })
     );
     return;
   }
 
-  // Static assets - Cache first with network fallback & background update
+  // Static assets - Cache first with network fallback
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request)
         .then((networkResponse) => {
-          if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
+          if (networkResponse && networkResponse.status === 200) {
             const responseToCache = networkResponse.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, responseToCache);
@@ -80,7 +79,7 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         })
         .catch((err) => {
-          console.warn('Network fetch failed for PWA asset:', err);
+          console.warn('Network fetch failed for asset:', err);
         });
 
       return cachedResponse || fetchPromise;

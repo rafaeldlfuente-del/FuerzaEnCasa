@@ -14,6 +14,8 @@ export const PWAInstallPrompt: React.FC = () => {
   const [isAndroid, setIsAndroid] = useState<boolean>(false);
   const [isIOS, setIsIOS] = useState<boolean>(false);
 
+  const [isInIframe, setIsInIframe] = useState<boolean>(false);
+
   useEffect(() => {
     // Detect OS
     const ua = navigator.userAgent || '';
@@ -21,6 +23,15 @@ export const PWAInstallPrompt: React.FC = () => {
     const ios = /iphone|ipad|ipod/i.test(ua);
     setIsAndroid(android);
     setIsIOS(ios);
+
+    // Detect if running inside iframe (e.g. AI Studio preview)
+    try {
+      if (window.self !== window.top) {
+        setIsInIframe(true);
+      }
+    } catch {
+      setIsInIframe(true);
+    }
 
     // Check if already in standalone / PWA mode
     const isStandalone =
@@ -162,20 +173,39 @@ export const PWAInstallPrompt: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-2 text-amber-400 font-bold text-sm">
                 <Sparkles className="w-4 h-4" />
-                <span>Guía de instalación para Android (Chrome)</span>
+                <span>Instalación PWA en Android (Google Chrome)</span>
               </div>
+
+              {isInIframe && (
+                <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-xs text-amber-200 space-y-2">
+                  <p className="font-semibold flex items-center space-x-1.5">
+                    <Info className="w-4 h-4 text-amber-400 shrink-0" />
+                    <span>Estás viendo la vista previa dentro de un marco (iframe)</span>
+                  </p>
+                  <p className="text-[11px] text-slate-300">
+                    Chrome requiere abrir la URL directamente para habilitar el botón "Instalar aplicación" nativo.
+                  </p>
+                  <button
+                    onClick={() => window.open(window.location.href, '_blank')}
+                    className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-1.5 px-3 rounded-lg text-xs transition-colors flex items-center justify-center space-x-1"
+                  >
+                    <span>Abrir en pestaña nueva</span>
+                  </button>
+                </div>
+              )}
+
               <ol className="space-y-2.5 text-xs text-slate-300 bg-slate-800/60 border border-slate-700/50 rounded-xl p-3.5">
                 <li className="flex items-start space-x-2.5">
                   <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">1</span>
-                  <span>Abre el menú del navegador tocando los <strong>3 puntos (⋮)</strong> en la esquina superior derecha.</span>
+                  <span>Abre esta app en <strong>Google Chrome</strong> en tu móvil Android.</span>
                 </li>
                 <li className="flex items-start space-x-2.5">
                   <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">2</span>
-                  <span>Pulsa en <strong>"Añadir a la pantalla de inicio"</strong> o <strong>"Instalar aplicación"</strong>.</span>
+                  <span>Toca el botón <strong>"Instalar"</strong> arriba o los <strong>3 puntos (⋮)</strong> en la esquina superior derecha de Chrome.</span>
                 </li>
                 <li className="flex items-start space-x-2.5">
                   <span className="w-5 h-5 rounded-full bg-amber-500/20 text-amber-400 font-bold flex items-center justify-center text-[10px] shrink-0 mt-0.5">3</span>
-                  <span>Confirma y la app aparecerá en tu móvil con su icono propio, pantalla completa y acceso offline.</span>
+                  <span>Selecciona <strong>"Instalar aplicación"</strong> (o "Añadir a pantalla de inicio"). Chrome generará la PWA nativa con icono y pantalla completa.</span>
                 </li>
               </ol>
             </div>

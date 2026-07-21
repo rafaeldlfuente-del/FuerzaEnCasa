@@ -1,42 +1,52 @@
 {
-  "id": "/",
+  "id": "fuerzaencasa-app",
   "short_name": "FuerzaEnCasa",
   "name": "FuerzaEnCasa - Entrenamiento Personal",
   "description": "Aplicación de entrenamiento de fuerza con mancuernas de 5kg, gomas y espaldera. Rutinas de 30 min, seguimiento en tiempo real y nutrición.",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "icon-192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any"
     },
     {
-      "src": "/icon-192.png",
+      "src": "icon-192.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "icon-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any"
     },
     {
-      "src": "/icon-maskable-512.png",
+      "src": "icon-maskable-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
-    },
-    {
-      "src": "/icon.svg",
-      "type": "image/svg+xml",
-      "sizes": "512x512",
-      "purpose": "any"
     }
   ],
-  "start_url": "/",
-  "scope": "/",
+  "screenshots": [
+    {
+      "src": "screenshot-1.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Rutinas de fuerza en casa"
+    },
+    {
+      "src": "screenshot-2.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Panel de control y progreso"
+    }
+  ],
+  "start_url": "./",
+  "scope": "./",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
   "display": "standalone",

@@ -6,7 +6,8 @@ import './index.css';
 // Register PWA Service Worker
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').then(
+    const swUrl = `${import.meta.env.BASE_URL || './'}sw.js`;
+    navigator.serviceWorker.register(swUrl).then(
       (registration) => {
         console.log('PWA ServiceWorker registered with scope:', registration.scope);
       },

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#090d16"/>
+    </linearGradient>
+    <linearGradient id="dumbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  
+  <!-- Background Card -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="none" stroke="#f59e0b" stroke-opacity="0.25" stroke-width="4"/>
+  
+  <!-- Dumbbell Graphic -->
+  <g filter="url(#glow)" transform="translate(256,256) rotate(-45)">
+    <!-- Main Shaft -->
+    <rect x="-140" y="-14" width="280" height="28" rx="8" fill="#f8fafc"/>
+    
+    <!-- Outer Plates Left -->
+    <rect x="-180" y="-70" width="28" height="140" rx="10" fill="url(#dumbGrad)"/>
+    <rect x="-148" y="-55" width="24" height="110" rx="8" fill="url(#dumbGrad)"/>
+    
+    <!-- Outer Plates Right -->
+    <rect x="152" y="-70" width="28" height="140" rx="10" fill="url(#dumbGrad)"/>
+    <rect x="124" y="-55" width="24" height="110" rx="8" fill="url(#dumbGrad)"/>
+    
+    <!-- Inner Collars -->
+    <rect x="-120" y="-35" width="16" height="70" rx="5" fill="#f1f5f9"/>
+    <rect x="104" y="-35" width="16" height="70" rx="5" fill="#f1f5f9"/>
+    
+    <!-- Grip Texture -->
+    <line x1="-60" y1="0" x2="60" y2="0" stroke="#020617" stroke-width="6" stroke-dasharray="10,6"/>
+  </g>
+  
+  <!-- Text Label -->
+  <text x="256" y="440" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" fill="#fbbf24" text-anchor="middle" letter-spacing="2">FUERZA EN CASA</text>
+</svg>

@@ -1,0 +1,6 @@
+{
+  "name": "FuerzaEnCasa - Entrenamiento Personal",
+  "description": "Aplicación de entrenamiento personal hipertrofia con 5kg y bandas, rutinas de 30 min, seguimiento en tiempo real, metas ajustables y nutrición.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

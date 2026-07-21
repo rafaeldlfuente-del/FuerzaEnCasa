@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradMask" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="dumbGradMask" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c"/>
+      <stop offset="50%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Full Maskable Background Bleed -->
+  <rect width="512" height="512" fill="url(#bgGradMask)"/>
+  
+  <!-- Centered Safe-Zone Graphic -->
+  <g transform="translate(256,256) scale(0.85) rotate(-45)">
+    <!-- Main Shaft -->
+    <rect x="-140" y="-14" width="280" height="28" rx="8" fill="#f8fafc"/>
+    
+    <!-- Outer Plates Left -->
+    <rect x="-180" y="-70" width="28" height="140" rx="10" fill="url(#dumbGradMask)"/>
+    <rect x="-148" y="-55" width="24" height="110" rx="8" fill="url(#dumbGradMask)"/>
+    
+    <!-- Outer Plates Right -->
+    <rect x="152" y="-70" width="28" height="140" rx="10" fill="url(#dumbGradMask)"/>
+    <rect x="124" y="-55" width="24" height="110" rx="8" fill="url(#dumbGradMask)"/>
+  </g>
+</svg>

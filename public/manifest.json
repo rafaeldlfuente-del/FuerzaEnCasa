@@ -1,32 +1,51 @@
 {
-  "id": "fuerzaencasa-app",
+  "id": "./",
   "short_name": "FuerzaEnCasa",
   "name": "FuerzaEnCasa - Entrenamiento Personal",
   "description": "Aplicación de entrenamiento de fuerza con mancuernas de 5kg, gomas y espaldera. Rutinas de 30 min, seguimiento en tiempo real y nutrición.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "prefer_related_applications": false,
+  "categories": ["fitness", "sports", "health", "lifestyle"],
+  "dir": "ltr",
+  "lang": "es-ES",
   "icons": [
     {
       "src": "icon-192.png",
       "type": "image/png",
       "sizes": "192x192",
-      "purpose": "any"
-    },
-    {
-      "src": "icon-192.png",
-      "type": "image/png",
-      "sizes": "192x192",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
       "src": "icon-512.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "icon-maskable-512.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Comenzar Entrenamiento",
+      "short_name": "Entrenar",
+      "description": "Iniciar rutina de fuerza de 30 min",
+      "url": "./?action=workout",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ],
   "screenshots": [
@@ -44,15 +63,5 @@
       "form_factor": "wide",
       "label": "Panel de control y progreso"
     }
-  ],
-  "start_url": "./",
-  "scope": "./",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
-  "display": "standalone",
-  "orientation": "portrait",
-  "categories": ["fitness", "sports", "health", "lifestyle"],
-  "dir": "ltr",
-  "lang": "es-ES",
-  "prefer_related_applications": false
+  ]
 }
